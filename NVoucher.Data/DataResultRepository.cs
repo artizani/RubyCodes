@@ -34,6 +34,18 @@ namespace NVoucher.Data
                         Table = "MTN_1000",
                         Count = 2,
                         Result = new [] {"wwsdasdas", "sadsdaa"}
+                    },
+                     new EntityMap
+                    {
+                        Table = "MTN_200",
+                        Count = 2,
+                        Result = new [] {"wwsdasdas", "sadsdaa"}
+                    },
+                     new EntityMap
+                    {
+                        Table = "GLO_50",
+                        Count = 2,
+                        Result = new [] {"wwsdasdas", "sadsdaa"}
                     }
                };
         }

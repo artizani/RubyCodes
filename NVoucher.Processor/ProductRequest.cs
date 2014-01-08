@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NVoucher.Data;
 using NVoucher.Model;
@@ -35,17 +36,17 @@ namespace NVoucher.Service
                     result =>
                         new EntityMap
                         {
-                            Table = string.Format("{0}_{1}", result.Value.Vendor, result.Value.Value),
+                            Table = string.Format("{0}_{1}", result.Value.Vendor, result.Value.Amount),
                             Count = result.Key,
                             product = result.Value
                         }).ToList();
 
             var Repo = new DataResultRepository();
             var newVouchers = Repo.GetNewVouchers(products) as List<EntityMap>;
-
+           
             foreach (var source in order.Items)
             {
-                string table = string.Format("{0}_{1}", source.Value.Vendor, source.Value.Value);
+                string table = string.Format("{0}_{1}", source.Value.Vendor, source.Value.Amount);
 
                 foreach (EntityMap items in newVouchers.Where(v => (v.Table == table)))
                 {
@@ -56,9 +57,10 @@ namespace NVoucher.Service
                         responseList.Add(new Product
                         {
                             Name = source.Value.Name,
-                            Owner = source.Value.Owner,
+                            Amount = source.Value.Amount,
+                            Date = DateTime.UtcNow,
                             Secret = secret,
-                            Value = source.Value.Value,
+                            Owner = source.Value.Owner,
                             Vendor = source.Value.Vendor
 
                         });
