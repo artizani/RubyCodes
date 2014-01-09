@@ -49,5 +49,54 @@ namespace NVoucher.Data
                     }
                };
         }
+
+        public IEnumerable<TransactionDetail> GetFundHistory()
+        {
+          
+        return
+                new List<TransactionDetail>
+                {
+                        new TransactionDetail
+                        {
+                            Date = DateTime.UtcNow.ToLongDateString(),
+                            Credit = (decimal) 100.00,
+                            Debit = (decimal) 50.01,
+                            Balance = 320,
+                            OrderId = 145456
+
+                        },
+                        new TransactionDetail
+                        {
+                            Date = DateTime.UtcNow.ToLongDateString(),
+                            Credit = (decimal) 110.00,
+                            Debit = (decimal) 56.00,
+                            Balance = 320,
+                            OrderId = 123999
+                        },
+
+                        new TransactionDetail
+                        {
+                            Date = DateTime.UtcNow.ToLongDateString(),
+                            Credit = (decimal) 101.00,
+                            Debit = (decimal) 55.00,
+                            Balance = 307,
+                            OrderId = 173456
+                        },
+
+                        new TransactionDetail
+                        {
+                            Date = DateTime.UtcNow.ToLongDateString(),
+                            Credit = (decimal) 100.00,
+                            Debit = (decimal) 150.00,
+                            Balance = 210,
+                            OrderId = 12356
+                        }
+
+
+                };
+            
+
+        }
+
     }
 }

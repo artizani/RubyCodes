@@ -9,7 +9,7 @@ using NVoucher.Service;
 
 namespace NVoucher.Web.Controllers
 {
-    public class CodesController : ApiController
+    public class ProductResultController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<IProduct> Get()

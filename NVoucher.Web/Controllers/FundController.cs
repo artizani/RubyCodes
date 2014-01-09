@@ -4,10 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.Ajax.Utilities;
+using NVoucher.Model;
+using NVoucher.Service;
 
 namespace NVoucher.Web.Controllers
 {
-    public class Test : ApiController
+    public class FundController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<string> Get()
@@ -16,9 +19,11 @@ namespace NVoucher.Web.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public IEnumerable<TransactionDetail> Summary()
         {
-            return "value";
+            var data= new Funder().Statment();
+            return data;
         }
 
         // POST api/<controller>

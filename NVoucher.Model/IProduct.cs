@@ -9,7 +9,7 @@ namespace NVoucher.Model
         Category Owner { get; set; }
         Vendor Vendor { get; set; }
         string Secret { get; set; }
-        DateTime Date { get; set; }
+        string Date { get; set; }
     }
 
     public interface IOrderedProduct : IProduct

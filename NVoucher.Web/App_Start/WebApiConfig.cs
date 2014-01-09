@@ -16,8 +16,14 @@ namespace NVoucher.Web
 
            config.Routes.MapHttpRoute(
            name: "Codes",
-           routeTemplate: "api/Codes",
-           defaults: new { controller = "Codes" });
+           routeTemplate: "api/ProductResult/Codes",
+           defaults: new { controller = "ProductResult" });
+
+          config.Routes.MapHttpRoute(
+          name: "ActionApi",
+          routeTemplate: "api/{controller}/{action}/{id}",
+          defaults: new { id = RouteParameter.Optional }
+);
     
         }
     }

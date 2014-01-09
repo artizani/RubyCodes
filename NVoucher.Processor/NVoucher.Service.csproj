@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fund.cs" />
+    <Compile Include="IFund.cs" />
     <Compile Include="IProductRequest.cs" />
     <Compile Include="IProductResponse.cs" />
     <Compile Include="ProductRequest.cs" />

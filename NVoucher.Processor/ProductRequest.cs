@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using NVoucher.Data;
 using NVoucher.Model;
@@ -8,7 +9,7 @@ namespace NVoucher.Service
 {
     public class ProductRequest : IProductRequest
     {
-        public Order item { get; private set; }
+        public Order Item { get; private set; }
 
         private OrderResponse Fulfill(Order order)
         {
@@ -58,7 +59,8 @@ namespace NVoucher.Service
                         {
                             Name = source.Value.Name,
                             Amount = source.Value.Amount,
-                            Date = DateTime.UtcNow,
+                            Date = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm",
+                                CultureInfo.InvariantCulture),
                             Secret = secret,
                             Owner = source.Value.Owner,
                             Vendor = source.Value.Vendor

@@ -48,6 +48,7 @@
     <Compile Include="OrderResult.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ResponseType.cs" />
+    <Compile Include="TransactionDetail.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserDetail.cs" />
     <Compile Include="Vendor.cs" />

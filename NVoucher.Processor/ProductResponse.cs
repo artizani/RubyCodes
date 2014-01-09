@@ -1,6 +1,6 @@
 ﻿using NVoucher.Model;
 
-namespace NVoucher.Service.Model
+namespace NVoucher.Service
 {
     class ProductResponse:IProductResponse
     {
