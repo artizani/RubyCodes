@@ -1,0 +1,2 @@
+﻿CREATE LOGIN [IIS APPPOOL\AngularSite] FROM WINDOWS;
+CREATE USER AngularSiteAppPoolUser FOR LOGIN [IIS APPPOOL\AngularSite];

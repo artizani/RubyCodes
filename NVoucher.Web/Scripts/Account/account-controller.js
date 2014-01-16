@@ -1,10 +1,16 @@
 ﻿'use strict';
 
 registrationModule.controller("AccountController", function ($scope, accountRepository, $location) {
-    $scope.save = function (student) {
+
+    $scope.profile = {};
+
+ 
+
+    $scope.submit = function (profile) {
+        console.log(profile.email);
         $scope.error = false;
-        accountRepository.save(student).$promise.then(
-            function() { $location.url('Registration/Courses'); },
+        accountRepository.save(profile).$promise.then(
+            function() { $location.absUrl('/store'); },
             function() { $scope.error = true; });
     };
 });

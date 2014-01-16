@@ -2,8 +2,8 @@
 
 registrationModule.factory('accountRepository', function($resource) {
     return {
-        save: function (student) {
-            return $resource('/api/Account').save(student);
+        save: function (profile) {
+            return $resource('/api/Account/Register').save(profile);
         }
     };
 });
