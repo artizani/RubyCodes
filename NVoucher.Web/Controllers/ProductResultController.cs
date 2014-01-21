@@ -9,6 +9,7 @@ using NVoucher.Service;
 
 namespace NVoucher.Web.Controllers
 {
+    [Authorize]
     public class ProductResultController : ApiController
     {
         // GET api/<controller>

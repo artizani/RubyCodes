@@ -2,7 +2,7 @@
 
 namespace NVoucher.Model
 {
-    [DataContract]
+
     public enum Category
     {
     }

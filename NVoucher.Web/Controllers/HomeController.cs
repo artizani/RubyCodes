@@ -10,9 +10,10 @@ namespace Demo.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            //ViewBag.Title = "Home Page";
 
-            return View();
+            //return View();
+            return Redirect("index.html");
         }
     }
 }
