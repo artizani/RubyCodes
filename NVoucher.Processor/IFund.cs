@@ -6,8 +6,10 @@ namespace NVoucher.Service
 {
    public interface IFunder
    {
-       decimal GetBalance();
-       void Update(decimal amount);
+       decimal Balance();
+       decimal Credit();
+
+       decimal Debit();
        IEnumerable<TransactionDetail> Statment();
    }
 }

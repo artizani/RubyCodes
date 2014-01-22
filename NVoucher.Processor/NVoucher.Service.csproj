@@ -43,6 +43,7 @@
     <Compile Include="IFund.cs" />
     <Compile Include="IProductRequest.cs" />
     <Compile Include="IProductResponse.cs" />
+    <Compile Include="IPurchase.cs" />
     <Compile Include="ProductRequest.cs" />
     <Compile Include="ProductResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,6 +9,13 @@ namespace NVoucher.Service
 {
     public class ProductRequest : IProductRequest
     {
+        public ProductRequest(IUser user)
+        {       
+            this.User = user;
+        }
+
+        // check cache to validate product prices
+
         public Order Item { get; private set; }
 
         private OrderResponse Fulfill(Order order)
@@ -27,6 +34,7 @@ namespace NVoucher.Service
             return null;
         }
 
+        public IUser User { get;  set; }
 
         public OrderResponse Retrieve(Order order)
         {
@@ -62,7 +70,7 @@ namespace NVoucher.Service
                             Date = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm",
                                 CultureInfo.InvariantCulture),
                             Secret = secret,
-                            Owner = source.Value.Owner,
+                            Category = source.Value.Category,
                             Vendor = source.Value.Vendor
 
                         });

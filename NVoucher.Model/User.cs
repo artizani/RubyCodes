@@ -2,6 +2,12 @@
 {
     public class User
     {
-        private UserDetail UserDetail { get; set; }
+         string UserName { get; set; }
+         decimal Balance { get; set; }
+    }
+    public interface IUser
+    {
+         string UserName { get; set; }
+         decimal Balance { get; set; }
     }
 }

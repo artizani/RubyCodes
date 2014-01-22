@@ -6,21 +6,46 @@ namespace NVoucher.Service
 {
     public class Funder : IFunder
     {
-        private decimal Balance { get; set; }
-        public decimal GetBalance()
+        private IUser _user;
+        public Funder(IUser user)
         {
-            return new decimal(1000.00);
+            _user = user;
+            this.Refresh();
+        }
+        public decimal Balance()
+        {
+            return _user.Balance;
         }
 
-        public void Update(decimal amount)
+        public decimal Credit()
         {
-            this.Balance += amount;
+            throw new System.NotImplementedException();
+        }
+
+        public decimal Debit()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void Update(decimal amount)
+        {
+          //  this.Balance += amount;
         }
 
         public IEnumerable<TransactionDetail> Statment()
         {
             var repo = new DataResultRepository();
             return repo.GetFundHistory();
+        }
+
+        private void Refresh()
+        {
+            // ToDo: db call using _user.UserName to get up to date Balance
+        }
+
+        private void RecordCredit()
+        {
+            // ToDo: db call using _user.UserName to get up to date Balance
         }
     }
 }

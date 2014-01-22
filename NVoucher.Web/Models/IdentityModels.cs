@@ -38,7 +38,7 @@ namespace NVoucher.Web.Models
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<ToDo> ToDoes { get; set; }
+
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Credit> Credit { get; set; }
         public DbSet<Balance> Balance { get; set; }
@@ -57,52 +57,9 @@ namespace NVoucher.Web.Models
         public int? Numbers { get; set; }
 
     }
-    public class ToDo
-    {
-        public int Id { get; set; }
-        public string Description { get; set; }
-        public bool IsDone { get; set; }
-        public virtual ApplicationUser User { get; set; }
-    }
 
-    public class Credit
-    {
-        public long CreditId { get; set; }
-        public string Username { get; set; }
-        public string OldValue { get; set; }
-        public string Amount { get; set; }
-        public string NewValue { get; set; }
-        public string InFlight { get; set; }
-    }
 
-      public class Balance
-    {
-        public long BalanceId { get; set; }
-        public string Username { get; set; }
-        public string Value { get; set; }
-        public string InFlight { get; set; }
-    }
-
-     public class Debit
-    {
-        public long DebitId { get; set; }
-         public string Username { get; set; }
-        public string OldValue { get; set; }
-        public string Amount { get; set; }
-        public string NewValue { get; set; }
-        public string InFlight { get; set; }
-    }
-
-     public class Transaction
-    {
-        public long TransactionId { get; set; }
-        public string Username { get; set; }
-        public int? ProductCode { get; set; }
-        public int CostPrice { get; set; }
-        public int Saleprice { get; set; }
-        public DateTime? DateTime { get; set; }
-
-    }
+  
 
     
     //public class MyDbContext : IdentityDbContext<ApplicationUser>

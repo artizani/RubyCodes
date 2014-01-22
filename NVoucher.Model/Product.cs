@@ -8,15 +8,23 @@ namespace NVoucher.Model
     {
 
         public string Name { get; set; }
-  
-        public int Amount { get; set; }
+        decimal IProduct.Amount
+        {
+            get { return Amount; }
+            set { Amount = value; }
+        }
+
+        public Category Category { get; set; }
+
+        public decimal Amount { get; set; }
        
-        public Category Owner { get; set; }
+
         
         public Vendor Vendor { get; set; }
        
         public string Secret { get; set; }
-      
+        public byte[] Timestamp { get; set; }
+
         public string Date { get; set; }
 
       
