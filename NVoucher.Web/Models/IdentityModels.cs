@@ -25,10 +25,10 @@ namespace NVoucher.Web.Models
             modelBuilder.Entity<IdentityUser>().ToTable("Users");
             modelBuilder.Entity<ApplicationUser>().ToTable("Users");
             modelBuilder.Entity<Profile>().HasKey(t => t.Email);
-            modelBuilder.Entity<Credit>().HasKey(t => t.CreditId);
-            modelBuilder.Entity<Balance>().HasKey(t => t.BalanceId);
-            modelBuilder.Entity<Debit>().HasKey(t => t.DebitId);
-            modelBuilder.Entity<Transaction>().HasKey(t => t.TransactionId);
+            modelBuilder.Entity<Credit>().HasKey(t => t.Id);
+            modelBuilder.Entity<Balance>().HasKey(t => t.Id);
+            modelBuilder.Entity<Debit>().HasKey(t => t.Id);
+            modelBuilder.Entity<Transaction>().HasKey(t => t.Id);
 
             modelBuilder.Entity<Transaction>().Property(t => t.Username)
             .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
