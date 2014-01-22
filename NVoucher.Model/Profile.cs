@@ -46,6 +46,7 @@ namespace NVoucher.Model
     public class Transaction
     {
         public long Id { get; set; }
+        public string UserId { get; set; }
         public string Username { get; set; }
         public int? ProductCode { get; set; }
         public int CostPrice { get; set; }

@@ -6,6 +6,6 @@ namespace NVoucher.Model
     {
         
         IEnumerable<KeyValuePair<int, IProduct>> Items { get; set; }
-        User User { get; set; }
+        
     }
 }

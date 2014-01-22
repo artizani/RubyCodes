@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NVoucher.Sample", "NVoucher
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NVoucher.Web", "NVoucher.Web\NVoucher.Web.csproj", "{E71E7C4E-8F82-4ABD-8952-2A3B5C0C32AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{80F20EC3-FE55-419B-A014-74441F8CF559}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{E71E7C4E-8F82-4ABD-8952-2A3B5C0C32AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E71E7C4E-8F82-4ABD-8952-2A3B5C0C32AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E71E7C4E-8F82-4ABD-8952-2A3B5C0C32AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F20EC3-FE55-419B-A014-74441F8CF559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F20EC3-FE55-419B-A014-74441F8CF559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F20EC3-FE55-419B-A014-74441F8CF559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F20EC3-FE55-419B-A014-74441F8CF559}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

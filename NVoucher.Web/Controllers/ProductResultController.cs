@@ -47,11 +47,11 @@ namespace NVoucher.Web.Controllers
                     Amount = 200
                 })
             };
-
-           return new ProductRequest().Retrieve(
+            IUser usr = null;
+           return new ProductRequest(usr).Retrieve(
                 new Order
                 {
-                    User = null,
+                   // User = null,
                     Items = dataitem
                 });
         }

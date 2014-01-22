@@ -1,6 +1,9 @@
 ﻿namespace NVoucher.Model
 {
-    internal enum ResponseType
+    public enum ResponseType
     {
+        Success,
+        Failure,
+        Error
     }
 }

@@ -48,10 +48,11 @@ namespace NVoucher.Test
 
             var data = new Order
             {
-                User = null,
+                
                 Items = dataitem
             };
-            var test = new ProductRequest();
+            IUser usr = null;
+            var test = new ProductRequest(usr);
             var report = test.Retrieve(data);
 
             Assert.False(true);

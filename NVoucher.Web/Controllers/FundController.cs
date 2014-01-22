@@ -22,7 +22,8 @@ namespace NVoucher.Web.Controllers
         [HttpGet]
         public IEnumerable<TransactionDetail> Summary()
         {
-            var data= new Funder().Statment();
+            IUser usr = null;
+            var data= new FundService(usr).Statment();
             return data;
         }
 

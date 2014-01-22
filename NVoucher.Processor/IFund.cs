@@ -7,9 +7,10 @@ namespace NVoucher.Service
    public interface IFunder
    {
        decimal Balance();
-       decimal Credit();
+       void Credit(decimal value);
 
-       decimal Debit();
+       int Debit(decimal value);
+       bool IsAffordable(decimal value);
        IEnumerable<TransactionDetail> Statment();
    }
 }

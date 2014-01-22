@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8FF7F631-A71A-44FC-8445-D266B6F3B65A}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{80F20EC3-FE55-419B-A014-74441F8CF559}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NVoucher.Service</RootNamespace>
-    <AssemblyName>NVoucher.Service</AssemblyName>
+    <RootNamespace>Tester</RootNamespace>
+    <AssemblyName>Tester</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,25 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Funder.cs" />
-    <Compile Include="IFund.cs" />
-    <Compile Include="IProductRequest.cs" />
-    <Compile Include="IProductResponse.cs" />
-    <Compile Include="IPurchase.cs" />
-    <Compile Include="ProductRequest.cs" />
-    <Compile Include="ProductResponse.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\NVoucher.Data\NVoucher.Data.csproj">
-      <Project>{8BCD2FBE-D95D-4482-AF97-CD86ABB03363}</Project>
-      <Name>NVoucher.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NVoucher.Model\NVoucher.Model.csproj">
-      <Project>{14DD8315-165A-466E-89A7-349E1FF7D797}</Project>
-      <Name>NVoucher.Model</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
