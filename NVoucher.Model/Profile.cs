@@ -18,7 +18,7 @@ namespace NVoucher.Model
     public class Credit
     {
         public long Id { get; set; }
-        public string Username { get; set; }
+        public string OrderId { get; set; }
         public string OldValue { get; set; }
         public string Amount { get; set; }
         public string NewValue { get; set; }
@@ -28,7 +28,7 @@ namespace NVoucher.Model
     public class Balance
     {
         public long Id { get; set; }
-        public string Username { get; set; }
+        public string OrderId { get; set; }
         public string Value { get; set; }
         public string InFlight { get; set; }
     }
@@ -36,7 +36,7 @@ namespace NVoucher.Model
     public class Debit
     {
         public long Id { get; set; }
-        public string Username { get; set; }
+        public string OrderId { get; set; }
         public string OldValue { get; set; }
         public string Amount { get; set; }
         public string NewValue { get; set; }
@@ -47,7 +47,7 @@ namespace NVoucher.Model
     {
         public long Id { get; set; }
         public string UserId { get; set; }
-        public string Username { get; set; }
+        public string OrderId { get; set; }
         public int? ProductCode { get; set; }
         public int CostPrice { get; set; }
         public int Saleprice { get; set; }

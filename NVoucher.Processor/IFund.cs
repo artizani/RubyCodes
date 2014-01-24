@@ -7,7 +7,7 @@ namespace NVoucher.Service
    public interface IFunder
    {
        decimal Balance();
-       void Credit(decimal value);
+       bool Credit(decimal value);
 
        int Debit(decimal value);
        bool IsAffordable(decimal value);
