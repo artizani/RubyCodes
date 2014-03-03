@@ -1,7 +1,7 @@
 ﻿registrationModule.factory('instructorRepository', function ($resource) {
     return {
-        get: function () {
+        get: function() {
             return $resource('api/Fund/Summary/').query();
         }
-    }
+    };
 });

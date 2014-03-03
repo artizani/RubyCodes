@@ -3,81 +3,65 @@ using NVoucher.Model;
 
 namespace NVoucher.Data
 {
+    public interface IUnitOfWork
+    {
+        IRepository<Balance> BalanceRepository { get; }
+        IRepository<Credit> CreditRepository { get; }
+        IRepository<Debit> DebitRepository { get; }
+        IRepository<Transaction> TransactionRepository { get; }
+        IRepository<Profile> ProfileRepository { get; }
+        void Save();
+        void SaveAsync();
+        void Dispose();
+    }
 
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
         private ApplicationDbContext context = new ApplicationDbContext();
-        private GenericRepository<Balance> balanceRepository;
-        private GenericRepository<Profile> profileRepository;
-        private GenericRepository<Credit> creditRepository;
-        private GenericRepository<Debit> debitRepository;
-        private GenericRepository<Transaction> transactionRepository;
+        private IRepository<Balance> _balanceRepository;
+        private IRepository<Profile> _profileRepository;
+        private IRepository<Credit> _creditRepository;
+        private IRepository<Debit> _debitRepository;
+        private IRepository<Transaction> _transactionRepository;
     
 
-        public GenericRepository<Balance> BalanceRepository
+        public IRepository<Balance> BalanceRepository
         {
-            get
-            {
-
-                if (this.balanceRepository == null)
-                {
-                    this.balanceRepository = new GenericRepository<Balance>(context);
-                }
-                return balanceRepository;
+            get {
+                return this._balanceRepository ??
+                       (this._balanceRepository = new GenericRepository<Balance>(this.context));
             }
         }
 
-          public GenericRepository<Credit> CreditRepository
+        public IRepository<Credit> CreditRepository
         {
-            get
-            {
-
-                if (this.creditRepository == null)
-                {
-                    this.creditRepository = new GenericRepository<Credit>(context);
-                }
-                return creditRepository;
+            get {
+                return this._creditRepository ?? (this._creditRepository = new GenericRepository<Credit>(this.context));
             }
         }
 
-          public GenericRepository<Debit> DebitRepository
+        public IRepository<Debit> DebitRepository
         {
-            get
-            {
-
-                if (this.creditRepository == null)
-                {
-                    this.debitRepository = new GenericRepository<Debit>(context);
-                }
-                return debitRepository;
+            get {
+                return this._debitRepository ?? (this._debitRepository = new GenericRepository<Debit>(this.context));
             }
         }
 
 
-          public GenericRepository<Transaction> TransactionRepository
+        public IRepository<Transaction> TransactionRepository
         {
-            get
-            {
-
-                if (this.transactionRepository == null)
-                {
-                    this.transactionRepository = new GenericRepository<Transaction>(context);
-                }
-                return transactionRepository;
+            get {
+                return this._transactionRepository ??
+                       (this._transactionRepository = new GenericRepository<Transaction>(this.context));
             }
         }
 
 
-          public GenericRepository<Profile> ProfileRepository
+        public IRepository<Profile> ProfileRepository
         {
-            get
-            {
-
-                if (this.profileRepository == null)
-                {
-                    this.profileRepository = new GenericRepository<Profile>(context);
-                }
-                return profileRepository;
+            get {
+                return this._profileRepository ??
+                       (this._profileRepository = new GenericRepository<Profile>(this.context));
             }
         }
    

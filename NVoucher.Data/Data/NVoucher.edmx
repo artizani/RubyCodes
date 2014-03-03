@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NVoucher.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="NVoucherStoreContainer">
+    <EntitySet Name="Debits" EntityType="NVoucher.Store.Debits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Credits" EntityType="NVoucher.Store.Credits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions" EntityType="NVoucher.Store.Transactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Balances" EntityType="NVoucher.Store.Balances" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetRoles" EntityType="NVoucher.Store.AspNetRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserClaims" EntityType="NVoucher.Store.AspNetUserClaims" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserLogins" EntityType="NVoucher.Store.AspNetUserLogins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUsers" EntityType="NVoucher.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Profiles" EntityType="NVoucher.Store.Profiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserPreferences" EntityType="NVoucher.Store.UserPreferences" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserRoles" EntityType="NVoucher.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="NVoucher.Store.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="NVoucher.Store.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ToDoes_dbo_AspNetUsers_User_Id" Association="NVoucher.Store.FK_dbo_ToDoes_dbo_AspNetUsers_User_Id">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="ToDo" EntitySet="UserPreferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetRole" Association="NVoucher.Store.FK_AspNetUserRoles_AspNetRole">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetUser" Association="NVoucher.Store.FK_AspNetUserRoles_AspNetUser">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserTranx" Association="NVoucher.Store.AspNetUserTranx">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Tranx" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserDebit" Association="NVoucher.Store.AspNetUserDebit">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Debit" EntitySet="Debits" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserProfile" Association="NVoucher.Store.AspNetUserProfile">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Profile" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="DebitTransaction" Association="NVoucher.Store.DebitTransaction">
+      <End Role="Debit" EntitySet="Debits" />
+      <End Role="Tranx" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Debits">
+    <Key>
+      <PropertyRef Name="DebitId" />
+    </Key>
+    <Property Name="DebitId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="OldValue" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Amount" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="NewValue" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="InFlight" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Credits">
+    <Key>
+      <PropertyRef Name="CreditId" />
+    </Key>
+    <Property Name="CreditId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="OldValue" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Amount" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="NewValue" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="InFlight" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="TranxId" />
+    </Key>
+    <Property Name="TranxId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="DebitOrderId" Type="bigint" Nullable="false" />
+    <Property Name="ProductCode" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="CostPrice" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="SalePrice" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Balances">
+    <Key>
+      <PropertyRef Name="BalanceId" />
+    </Key>
+    <Property Name="BalanceId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InFlight" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="User_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="LoginProvider" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ProviderKey" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Discriminator" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Profile_Email" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Profiles">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Country" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Term" Type="bit" Nullable="false" />
+    <Property Name="Numbers" Type="bigint" Nullable="false" />
+    <Property Name="IsVerified" Type="bit" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPreferences">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsDone" Type="bit" Nullable="false" />
+    <Property Name="User_Id" Type="nvarchar" Nullable="true" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="AspNetRoles_Id" />
+      <PropertyRef Name="AspNetUsers_Id" />
+    </Key>
+    <Property Name="AspNetRoles_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="AspNetUsers_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+    <End Role="AspNetUser" Type="NVoucher.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaim" Type="NVoucher.Store.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUser" Type="NVoucher.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogin" Type="NVoucher.Store.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ToDoes_dbo_AspNetUsers_User_Id">
+    <End Role="AspNetUser" Type="NVoucher.Store.AspNetUsers" Multiplicity="0..1" />
+    <End Role="ToDo" Type="NVoucher.Store.UserPreferences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ToDo">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserTranx">
+    <End Role="AspNetUser" Type="NVoucher.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="Tranx" Type="NVoucher.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tranx">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserDebit">
+    <End Role="AspNetUser" Type="NVoucher.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="Debit" Type="NVoucher.Store.Debits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Debit">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserProfile">
+    <End Role="AspNetUser" Type="NVoucher.Store.AspNetUsers" Multiplicity="*" />
+    <End Role="Profile" Type="NVoucher.Store.Profiles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="Profile_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DebitTransaction">
+    <End Role="Debit" Type="NVoucher.Store.Debits" Multiplicity="1" />
+    <End Role="Tranx" Type="NVoucher.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Debit">
+        <PropertyRef Name="DebitId" />
+      </Principal>
+      <Dependent Role="Tranx">
+        <PropertyRef Name="DebitOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_AspNetRole">
+    <End Role="AspNetRole" Type="NVoucher.Store.AspNetRoles" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="NVoucher.Store.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="AspNetRoles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_AspNetUser">
+    <End Role="AspNetUserRoles" Type="NVoucher.Store.AspNetUserRoles" Multiplicity="*" />
+    <End Role="AspNetUser" Type="NVoucher.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="AspNetUsers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="NVoucher" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="NVoucherContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Debits" EntityType="NVoucher.Debit" />
+          <EntitySet Name="Credits" EntityType="NVoucher.Credit" />
+          <EntitySet Name="Transactions" EntityType="NVoucher.Transaction" />
+          <EntitySet Name="Balances" EntityType="NVoucher.Balance" />
+          <EntitySet Name="AspNetRoles" EntityType="NVoucher.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="NVoucher.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="NVoucher.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="NVoucher.AspNetUser" />
+          <EntitySet Name="Profiles" EntityType="NVoucher.Profile" />
+          <EntitySet Name="UserPreferences" EntityType="NVoucher.UserPreferences" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="NVoucher.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="NVoucher.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ToDoes_dbo_AspNetUsers_User_Id" Association="NVoucher.FK_dbo_ToDoes_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ToDo" EntitySet="UserPreferences" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="NVoucher.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserTranx" Association="NVoucher.AspNetUserTranx">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Tranx" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserDebit" Association="NVoucher.AspNetUserDebit">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Debit" EntitySet="Debits" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserProfile" Association="NVoucher.AspNetUserProfile">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="DebitTransaction" Association="NVoucher.DebitTransaction">
+            <End Role="Debit" EntitySet="Debits" />
+            <End Role="Tranx" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Debit">
+          <Key>
+            <PropertyRef Name="DebitId" />
+          </Key>
+          <Property Name="DebitId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="AspNetUser" Relationship="NVoucher.AspNetUserDebit" FromRole="Debit" ToRole="AspNetUser" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tranges" Relationship="NVoucher.DebitTransaction" FromRole="Debit" ToRole="Tranx" />
+          <Property Name="OldValue" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InFlight" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Credit">
+          <Key>
+            <PropertyRef Name="CreditId" />
+          </Key>
+          <Property Name="CreditId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OldValue" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InFlight" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TranxId" />
+          </Key>
+          <Property Name="TranxId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="AspNetUser" Relationship="NVoucher.AspNetUserTranx" FromRole="Tranx" ToRole="AspNetUser" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Debit" Relationship="NVoucher.DebitTransaction" FromRole="Tranx" ToRole="Debit" />
+          <Property Name="DebitOrderId" Type="Int64" Nullable="false" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CostPrice" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SalePrice" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Balance">
+          <Key>
+            <PropertyRef Name="BalanceId" />
+          </Key>
+          <Property Name="BalanceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <Property Name="InFlight" Type="String" Nullable="false" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="NVoucher.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="NVoucher.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="NVoucher.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="NVoucher.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="NVoucher.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="ToDoes" Relationship="NVoucher.FK_dbo_ToDoes_dbo_AspNetUsers_User_Id" FromRole="AspNetUser" ToRole="ToDo" />
+          <NavigationProperty Name="AspNetRoles" Relationship="NVoucher.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="Tranges" Relationship="NVoucher.AspNetUserTranx" FromRole="AspNetUser" ToRole="Tranx" />
+          <NavigationProperty Name="Debits" Relationship="NVoucher.AspNetUserDebit" FromRole="AspNetUser" ToRole="Debit" />
+          <NavigationProperty Name="Profile" Relationship="NVoucher.AspNetUserProfile" FromRole="AspNetUser" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Term" Type="Boolean" Nullable="false" />
+          <Property Name="Numbers" Type="Int64" Nullable="false" />
+          <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="NVoucher.AspNetUserProfile" FromRole="Profile" ToRole="AspNetUser" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPreferences">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="NVoucher.FK_dbo_ToDoes_dbo_AspNetUsers_User_Id" FromRole="ToDo" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Type="NVoucher.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NVoucher.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="NVoucher.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NVoucher.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ToDoes_dbo_AspNetUsers_User_Id">
+          <End Type="NVoucher.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="NVoucher.UserPreferences" Role="ToDo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ToDo">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="NVoucher.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="NVoucher.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <Association Name="AspNetUserTranx">
+          <End Type="NVoucher.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="NVoucher.Transaction" Role="Tranx" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tranx">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserDebit">
+          <End Type="NVoucher.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="NVoucher.Debit" Role="Debit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Debit">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserProfile">
+          <End Type="NVoucher.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="NVoucher.Profile" Role="Profile" Multiplicity="1" />
+        </Association>
+        <Association Name="DebitTransaction">
+          <End Type="NVoucher.Debit" Role="Debit" Multiplicity="1" />
+          <End Type="NVoucher.Transaction" Role="Tranx" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Debit">
+              <PropertyRef Name="DebitId" />
+            </Principal>
+            <Dependent Role="Tranx">
+              <PropertyRef Name="DebitOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NVoucherStoreContainer" CdmEntityContainer="NVoucherContainer">
+    <EntitySetMapping Name="Debits">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.Debit)">
+        <MappingFragment StoreEntitySet="Debits">
+          <ScalarProperty Name="DebitId" ColumnName="DebitId" />
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+          <ScalarProperty Name="InFlight" ColumnName="InFlight" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Credits">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.Credit)">
+        <MappingFragment StoreEntitySet="Credits">
+          <ScalarProperty Name="CreditId" ColumnName="CreditId" />
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+          <ScalarProperty Name="InFlight" ColumnName="InFlight" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.Transaction)">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="TranxId" ColumnName="TranxId" />
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="DebitOrderId" ColumnName="DebitOrderId" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+          <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Balances">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.Balance)">
+        <MappingFragment StoreEntitySet="Balances">
+          <ScalarProperty Name="BalanceId" ColumnName="BalanceId" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="InFlight" ColumnName="InFlight" />
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.AspNetRole)">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.AspNetUserClaim)">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.AspNetUserLogin)">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.AspNetUser)">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.Profile)">
+        <MappingFragment StoreEntitySet="Profiles">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Term" ColumnName="Term" />
+          <ScalarProperty Name="Numbers" ColumnName="Numbers" />
+          <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserPreferences">
+      <EntityTypeMapping TypeName="IsTypeOf(NVoucher.UserPreferences)">
+        <MappingFragment StoreEntitySet="UserPreferences">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="NVoucher.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
+      </EndProperty>
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AspNetUserProfile" TypeName="NVoucher.AspNetUserProfile" StoreEntitySet="AspNetUsers">
+      <EndProperty Name="Profile">
+        <ScalarProperty Name="Email" ColumnName="Profile_Email" />
+      </EndProperty>
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -3,7 +3,7 @@ using NVoucher.Model;
 
 namespace NVoucher.Service
 {
-    interface IProductRequest
+    public interface IProductRequest
     {
         IUser User { get; }
         Order Item { get;  }

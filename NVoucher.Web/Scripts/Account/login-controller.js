@@ -19,13 +19,18 @@
     };
 });*/
 
-registrationModule.controller("LoginController", function ($scope, $http, $location){
+registrationModule.controller("LoginController", function ($scope, $http, $location, UserService) {
 
 
     $scope.user = {};
     $scope.user.grant_type="password";
     var credentials = $scope.user;
+    $scope.logout = function () {
 
+        $http.post('/api/Account/Logout');
+        UserService.currentUser = null;
+        return;
+    };
     $scope.login = function () {
 
         $http({method: 'POST', url: '/token', data:  credentials , transformRequest: function (obj) {
@@ -34,7 +39,8 @@ registrationModule.controller("LoginController", function ($scope, $http, $locat
                 str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
             return str.join("&");
         }}).success(function (data, status, headers, config) {
-                $scope.output = data;
+            $scope.output = data;
+            UserService.currentUser = data.header;
                 console.log(data.access_token);
             }).error(function (data, status, headers, config) {
                 $scope.output = data;
@@ -43,4 +49,10 @@ registrationModule.controller("LoginController", function ($scope, $http, $locat
         $location.absUrl('/');
 
 };
+});
+
+registrationModule.service('UserService', function($rootScope) {
+    return {
+        currentUser: null
+    };
 });

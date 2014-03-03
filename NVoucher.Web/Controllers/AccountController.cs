@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Security;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -17,6 +18,7 @@ using Microsoft.Owin.Security.OAuth;
 using Demo.Models;
 using Demo.Providers;
 using Demo.Results;
+using NVoucher.Data;
 using NVoucher.Model;
 using NVoucher.Web;
 using NVoucher.Web.Models;
@@ -338,14 +340,15 @@ namespace Demo.Controllers
             };
            
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            
             IHttpActionResult errorResult = GetErrorResult(result);
 
             if (errorResult != null)
             {
                 return errorResult;
             }
-                
-          
+             var name =  UserManager.FindByNameAsync(user.UserName);
+            // var name = Membership.GetUser(user.UserName);
             return Ok();
         }
 

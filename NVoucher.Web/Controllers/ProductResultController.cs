@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Web;
+using Microsoft.AspNet.Identity;
 using System.Web.Http;
 using NVoucher.Model;
 using NVoucher.Service;
@@ -15,6 +14,10 @@ namespace NVoucher.Web.Controllers
         // GET api/<controller>
         public IEnumerable<IProduct> Get()
         {
+            var id = this.User.Identity.GetUserId();
+            var x = HttpContext.Current.User.Identity;
+            var user = new User(id);
+            Console.WriteLine(id);
             return Mock().Items;
         }
 
@@ -47,7 +50,7 @@ namespace NVoucher.Web.Controllers
                     Amount = 200
                 })
             };
-            IUser usr = null;
+            Service.IUser usr = null;
            return new ProductRequest(usr).Retrieve(
                 new Order
                 {

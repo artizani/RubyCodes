@@ -43,6 +43,12 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\..\..\MSFT\Main\Product\Rare\Epoch\source\packages\Unity.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\..\..\MSFT\Main\Product\Rare\Epoch\source\packages\Unity.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Optimization">
       <HintPath>..\packages\Microsoft.Web.Optimization.0.1\lib\net40\Microsoft.Web.Optimization.dll</HintPath>
     </Reference>
@@ -56,6 +62,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Users\Dev\Documents\Visual Studio 2013\Projects\Demo\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
@@ -131,11 +138,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -160,87 +168,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201401160432162_voucher.cs" />
-    <Compile Include="Migrations\201401160432162_voucher.Designer.cs">
-      <DependentUpon>201401160432162_voucher.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401160525057_voucher1.cs" />
-    <Compile Include="Migrations\201401160525057_voucher1.Designer.cs">
-      <DependentUpon>201401160525057_voucher1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401160527367_voucher2.cs" />
-    <Compile Include="Migrations\201401160527367_voucher2.Designer.cs">
-      <DependentUpon>201401160527367_voucher2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401160551116_voucher3.cs" />
-    <Compile Include="Migrations\201401160551116_voucher3.Designer.cs">
-      <DependentUpon>201401160551116_voucher3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401161611081_voucher4.cs" />
-    <Compile Include="Migrations\201401161611081_voucher4.Designer.cs">
-      <DependentUpon>201401161611081_voucher4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401161622049_voucher5.cs" />
-    <Compile Include="Migrations\201401161622049_voucher5.Designer.cs">
-      <DependentUpon>201401161622049_voucher5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401161626220_voucher6.cs" />
-    <Compile Include="Migrations\201401161626220_voucher6.Designer.cs">
-      <DependentUpon>201401161626220_voucher6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401161634172_voucher7.cs" />
-    <Compile Include="Migrations\201401161634172_voucher7.Designer.cs">
-      <DependentUpon>201401161634172_voucher7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401161656209_voucher8.cs" />
-    <Compile Include="Migrations\201401161656209_voucher8.Designer.cs">
-      <DependentUpon>201401161656209_voucher8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401161700236_voucher9.cs" />
-    <Compile Include="Migrations\201401161700236_voucher9.Designer.cs">
-      <DependentUpon>201401161700236_voucher9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401161723413_voucher10.cs" />
-    <Compile Include="Migrations\201401161723413_voucher10.Designer.cs">
-      <DependentUpon>201401161723413_voucher10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401161746382_voucher11.cs" />
-    <Compile Include="Migrations\201401161746382_voucher11.Designer.cs">
-      <DependentUpon>201401161746382_voucher11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401162107359_voucher12.cs" />
-    <Compile Include="Migrations\201401162107359_voucher12.Designer.cs">
-      <DependentUpon>201401162107359_voucher12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401162109565_voucher13.cs" />
-    <Compile Include="Migrations\201401162109565_voucher13.Designer.cs">
-      <DependentUpon>201401162109565_voucher13.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401162113301_voucher14.cs" />
-    <Compile Include="Migrations\201401162113301_voucher14.Designer.cs">
-      <DependentUpon>201401162113301_voucher14.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401162115130_voucher15.cs" />
-    <Compile Include="Migrations\201401162115130_voucher15.Designer.cs">
-      <DependentUpon>201401162115130_voucher15.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401162118209_voucher16.cs" />
-    <Compile Include="Migrations\201401162118209_voucher16.Designer.cs">
-      <DependentUpon>201401162118209_voucher16.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401200054208_voucher17.cs" />
-    <Compile Include="Migrations\201401200054208_voucher17.Designer.cs">
-      <DependentUpon>201401200054208_voucher17.cs</DependentUpon>
+    <Compile Include="Migrations\201401271722228_nv.cs" />
+    <Compile Include="Migrations\201401271722228_nv.Designer.cs">
+      <DependentUpon>201401271722228_nv.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\UnityConfigBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="apple-touch-icon-114x114-precomposed.png" />
@@ -628,6 +568,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NVoucher.Data\NVoucher.Data.csproj">
+      <Project>{8BCD2FBE-D95D-4482-AF97-CD86ABB03363}</Project>
+      <Name>NVoucher.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NVoucher.Model\NVoucher.Model.csproj">
       <Project>{14DD8315-165A-466E-89A7-349E1FF7D797}</Project>
       <Name>NVoucher.Model</Name>
@@ -638,63 +582,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201401160432162_voucher.resx">
-      <DependentUpon>201401160432162_voucher.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401160525057_voucher1.resx">
-      <DependentUpon>201401160525057_voucher1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401160527367_voucher2.resx">
-      <DependentUpon>201401160527367_voucher2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401160551116_voucher3.resx">
-      <DependentUpon>201401160551116_voucher3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401161611081_voucher4.resx">
-      <DependentUpon>201401161611081_voucher4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401161622049_voucher5.resx">
-      <DependentUpon>201401161622049_voucher5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401161626220_voucher6.resx">
-      <DependentUpon>201401161626220_voucher6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401161634172_voucher7.resx">
-      <DependentUpon>201401161634172_voucher7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401161656209_voucher8.resx">
-      <DependentUpon>201401161656209_voucher8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401161700236_voucher9.resx">
-      <DependentUpon>201401161700236_voucher9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401161723413_voucher10.resx">
-      <DependentUpon>201401161723413_voucher10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401161746382_voucher11.resx">
-      <DependentUpon>201401161746382_voucher11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401162107359_voucher12.resx">
-      <DependentUpon>201401162107359_voucher12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401162109565_voucher13.resx">
-      <DependentUpon>201401162109565_voucher13.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401162113301_voucher14.resx">
-      <DependentUpon>201401162113301_voucher14.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401162115130_voucher15.resx">
-      <DependentUpon>201401162115130_voucher15.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401162118209_voucher16.resx">
-      <DependentUpon>201401162118209_voucher16.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401200054208_voucher17.resx">
-      <DependentUpon>201401200054208_voucher17.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <EmbeddedResource Include="Migrations\201401271722228_nv.resx">
+      <DependentUpon>201401271722228_nv.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

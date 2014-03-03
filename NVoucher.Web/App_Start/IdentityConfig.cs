@@ -1,9 +1,9 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using NVoucher.Data;
 using NVoucher.Model;
-using NVoucher.Web.Models;
-
+using Profile = NVoucher.Model.Profile;
 
 namespace NVoucher.Web.App_Start
 {
@@ -13,7 +13,7 @@ namespace NVoucher.Web.App_Start
         {
             protected override void Seed(ApplicationDbContext context)
             {
-                InitializeIdentityForEF(context);
+                this.InitializeIdentityForEF(context);
                 base.Seed(context);
             }
 
@@ -37,7 +37,7 @@ namespace NVoucher.Web.App_Start
                 }
 
                 //Create User=Admin with password=123456
-                var user = new ApplicationUser {UserName = name};
+                var user = new ApplicationUser { UserName = name };
                 var adminresult = UserManager.Create(user, password);
 
                 //Add User Admin to Role Admin

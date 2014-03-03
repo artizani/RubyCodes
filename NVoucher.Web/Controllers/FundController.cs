@@ -22,9 +22,9 @@ namespace NVoucher.Web.Controllers
         [HttpGet]
         public IEnumerable<TransactionDetail> Summary()
         {
-            IUser usr = null;
-            var data= new FundService(usr).Statment();
-            return data;
+            //IUser usr = null;
+            //var data= new FundService(usr).Statment();
+            return null;
         }
 
         // POST api/<controller>

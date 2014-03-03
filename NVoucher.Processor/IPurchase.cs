@@ -1,38 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NVoucher.Data;
 using NVoucher.Model;
 
 namespace NVoucher.Service
 {
     internal interface IPurchaseService
     {
-    
-
         OrderResponse Deliver();
 
     }
 
-    internal class PurchaseService : IPurchaseService
+    public class PurchaseService : IPurchaseService
     {
-        private IFunder _funder;
-        private IProductRequest _request;
+        private readonly IFunder _funder;
+        private readonly IProductRequest _request;
         private int _debitId;
-        private decimal _totalValue { get; set; }
+        private decimal TotalValue { get; set; }
       
         //private decimal Cost()
        
-        public PurchaseService(IFunder funder,IProductRequest request)
+        public PurchaseService(IProductRequest request)
         {
             
             try
             {
-                _funder = funder;
+                 _funder =_request.User.Funds;
                 _request = request;
                 this._debitId = 0;
-                _totalValue = _request.Item.Totalvalue;
+                this.TotalValue = _request.Item.Totalvalue;
             }
             catch (Exception assignmentException)
             {
@@ -43,7 +43,7 @@ namespace NVoucher.Service
         public bool Fundable()
         {
             
-            if (_funder.IsAffordable(_totalValue))
+            if (_funder.IsAffordable(this.TotalValue))
             return true; return false;
             //log exception if false and return insufficient funds message
         }
@@ -51,7 +51,7 @@ namespace NVoucher.Service
         {
             try
             {
-               _debitId= _funder.Debit(_totalValue);
+               _debitId= _funder.Debit(this.TotalValue);
                 return true;
             }
             catch (Exception purchaException)
@@ -68,16 +68,63 @@ namespace NVoucher.Service
                 return new OrderResponse {Message = "Yawa dey", Response = ResponseType.Error, Items = null};
 
             UpdateTransaction(_debitId);
-            var result = PopulateResult();
+            var order = new Order();
+            var result = PopulateResult(order);
             return result;
 
         }
 
-        private OrderResponse PopulateResult()
+        private OrderResponse PopulateResult(Order order)
         {
             //ToDo: Retrieve relevant voucher codes in response
-            return new OrderResponse();
+             var response = new OrderResponse();
+            var responseList = new List<IProduct>();
+            List<EntityMap> products =
+                order.Items.Select(
+                    result =>
+                        new EntityMap
+                        {
+                            Table = string.Format("{0}_{1}", result.Value.Vendor, result.Value.Amount),
+                            Count = result.Key,
+                            product = result.Value
+                        }).ToList();
+
+            var Repo = new DataResultRepository();
+            var newVouchers = Repo.GetNewVouchers(products) as List<EntityMap>;
+           
+            foreach (var source in order.Items)
+            {
+                string table = string.Format("{0}_{1}", source.Value.Vendor, source.Value.Amount);
+
+                foreach (EntityMap items in newVouchers.Where(v => (v.Table == table)))
+                {
+                    for (int i = 0; i < source.Key; i++)
+                    {
+                        string secret = items.Result[i];
+
+                        responseList.Add(new Product
+                        {
+                            Name = source.Value.Name,
+                            Amount = source.Value.Amount,
+                            Date = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm",
+                                CultureInfo.InvariantCulture),
+                            Secret = secret,
+                            Category = source.Value.Category,
+                            Vendor = source.Value.Vendor
+
+                        });
+
+
+                    }
+                }
+            }
+
+            response.Items = responseList;
+            return response;
+            //tbc
         }
+            //return new OrderResponse();
+        
 
         private void UpdateTransaction(int orderId)
         {

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{80F20EC3-FE55-419B-A014-74441F8CF559}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tester</RootNamespace>
     <AssemblyName>Tester</AssemblyName>
@@ -31,21 +31,75 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\..\..\..\Adstream\Exodus\Beam\packages\FluentAssertions.2.2.0.0\lib\net40\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\MSFT\Main\Product\Rare\Epoch\source\packages\Unity.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="xunit">
+      <HintPath>..\..\..\..\Adstream\Exodus\Beam\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.extensions">
+      <HintPath>..\..\..\..\Adstream\Exodus\Beam\packages\xunit.extensions.1.9.2\lib\net20\xunit.extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.runner.msbuild">
+      <HintPath>..\..\..\..\Adstream\Exodus\Beam\packages\xunit.1.9.2\lib\net20\xunit.runner.msbuild.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.runner.tdnet">
+      <HintPath>..\..\..\..\Adstream\Exodus\Beam\packages\xunit.1.9.2\lib\net20\xunit.runner.tdnet.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.runner.utility">
+      <HintPath>..\..\..\..\Adstream\Exodus\Beam\packages\xunit.1.9.2\lib\net20\xunit.runner.utility.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityFrameworkTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NVoucher.Data\NVoucher.Data.csproj">
+      <Project>{8bcd2fbe-d95d-4482-af97-cd86abb03363}</Project>
+      <Name>NVoucher.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NVoucher.Model\NVoucher.Model.csproj">
+      <Project>{14dd8315-165a-466e-89a7-349e1ff7d797}</Project>
+      <Name>NVoucher.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NVoucher.Web\NVoucher.Web.csproj">
+      <Project>{e71e7c4e-8f82-4abd-8952-2a3b5c0c32aa}</Project>
+      <Name>NVoucher.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

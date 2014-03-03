@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6a9ff270ec5a49279cd7e4d3a3d8a2cb" Name="Diagram1" >
+        <EntityTypeShape EntityType="NVoucher.Debit" Width="1.5" PointX="5.875" PointY="0.5" />
+        <EntityTypeShape EntityType="NVoucher.Credit" Width="1.5" PointX="3.625" PointY="0.75" />
+        <EntityTypeShape EntityType="NVoucher.Transaction" Width="1.5" PointX="1" PointY="2.125" />
+        <EntityTypeShape EntityType="NVoucher.Balance" Width="1.5" PointX="4.5" PointY="4" />
+        <EntityTypeShape EntityType="NVoucher.AspNetRole" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="NVoucher.AspNetUserClaim" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="NVoucher.AspNetUserLogin" Width="2.125" PointX="6.875" PointY="10.25" />
+        <EntityTypeShape EntityType="NVoucher.AspNetUser" Width="1.5" PointX="3" PointY="7.75" />
+        <EntityTypeShape EntityType="NVoucher.Profile" Width="1.5" PointX="7.5" PointY="2.25" />
+        <EntityTypeShape EntityType="NVoucher.UserPreferences" Width="1.5" PointX="7.875" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="NVoucher.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
+        <AssociationConnector Association="NVoucher.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="NVoucher.FK_dbo_ToDoes_dbo_AspNetUsers_User_Id" />
+        <AssociationConnector Association="NVoucher.AspNetUserRoles" />
+        <AssociationConnector Association="NVoucher.AspNetUserTranx" />
+        <AssociationConnector Association="NVoucher.AspNetUserDebit" />
+        <AssociationConnector Association="NVoucher.AspNetUserProfile" />
+        <AssociationConnector Association="NVoucher.DebitTransaction" />
+        <AssociationConnector Association="NVoucher.AspNetUserLoginAspNetUser" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
