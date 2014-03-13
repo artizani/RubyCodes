@@ -6,13 +6,14 @@
 registrationModule.controller("StoreController", ['$scope', '$routeParams', 'storeRepository', function ($scope, $routeParams, storeRepository) {
 
     // get store and cart from service
+   // $scope.cartItems = {};
     $scope.store = storeRepository.store;
     $scope.cart = storeRepository.cart;
     $scope.cartItems = storeRepository.cart.items;
 
     $scope.postcart = function () {
 
-        console.log($scope.cartItems);
+        
         $scope.error = false;
         //  orderRepository.get(cartItems);
         return storeRepository.save($scope.cartItems, function (data) {

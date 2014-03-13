@@ -76,9 +76,13 @@ namespace NVoucher.Model
 
     public class Balance
     {
+        public Balance()
+        {
+            InFlight = false;
+        }
         public long BalanceId { get; set; }
-        public string Value { get; set; }
-        public string InFlight { get; set; }
+        public decimal Value { get; set; }
+        public bool InFlight { get; set; }
 
         //[ForeignKey("ApplicationUserId")]
         public string ApplicationUserId { get; set; }

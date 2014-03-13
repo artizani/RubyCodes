@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using NVoucher.Data;
-using NVoucher.Service;
+﻿using NVoucher.Data;
 
 namespace NVoucher.Service
 {
         public class User : IUser
         {
-            private IUnitOfWork Worker;
+            //private IUnitOfWork _worker;
             private IFunder _funder;
-            public User(string id)
+            public User(IUnitOfWork worker,string id)
             {
                 Id = id;
-                _funder= new FundService(id);
+                _funder = new FundService(worker,id);
              //   HttpContext.Current.Request.LogonUserIdentity
-             //   Worker.
-             //UserName = ,
+
              
             }
             public override string ToString()

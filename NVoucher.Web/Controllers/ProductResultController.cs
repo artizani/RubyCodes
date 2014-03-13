@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using System.Web.Http;
+using Microsoft.Practices.Unity;
+using NVoucher.Data;
 using NVoucher.Model;
 using NVoucher.Service;
 
@@ -12,11 +14,14 @@ namespace NVoucher.Web.Controllers
     public class ProductResultController : ApiController
     {
         // GET api/<controller>
+        //[Dependency("basic")]
+        //IUnitOfWork Work { get; set; }
         public IEnumerable<IProduct> Get()
         {
+            var work = new UnitOfWork();
             var id = this.User.Identity.GetUserId();
-            var x = HttpContext.Current.User.Identity;
-            var user = new User(id);
+            var x = HttpContext.Current.User.Identity.GetUserId();
+            var user = new User(work,id);
             Console.WriteLine(id);
             return Mock().Items;
         }
@@ -29,25 +34,25 @@ namespace NVoucher.Web.Controllers
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 100
+                    Price = 100
                 }),
                 new KeyValuePair<int, IProduct>(2, new Product
                 {
                     Name = "GLO",
                     Vendor = Vendor.GLO,
-                    Amount = 50
+                    Price = 50
                 }),
                 new KeyValuePair<int, IProduct>(2, new Product
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 1000
+                    Price = 1000
                 }),
                 new KeyValuePair<int, IProduct>(2, new Product
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 200
+                    Price = 200
                 })
             };
             Service.IUser usr = null;

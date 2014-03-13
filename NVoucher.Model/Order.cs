@@ -7,6 +7,7 @@ namespace NVoucher.Model
         public int Id { get; set; }
         public decimal Totalvalue { get; set; }
         public IEnumerable<KeyValuePair<int, IProduct>> Items { get; set; }
+        public IDictionary<IProduct,int> Item {get; set; } 
 
         
     }

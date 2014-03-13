@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using NVoucher.Web.Utils;
 
@@ -12,7 +13,7 @@ namespace NVoucher.Web
 
             var factory = new SqlServerUnityConfigBuilder();
             var config = factory.Build(container);
-
+            //DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             httpConfiguration.DependencyResolver = new UnityDependencyResolver(container);
 
         }

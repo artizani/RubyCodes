@@ -26,8 +26,8 @@ namespace Tester
             return new Balance
             {
                 ApplicationUserId = "b62c1b75-1476-4ea5-aa57-523db32819f2",
-                InFlight = "1",
-                Value = "2000",
+                InFlight = false,
+                Value = Convert.ToDecimal("2000"),
                 DateTime = DateTime.UtcNow
 
 
@@ -94,8 +94,8 @@ namespace Tester
                 {
                     ApplicationUserId = "b62c1b75-1476-4ea5-aa57-523db32819f949",
                     DateTime = DateTime.UtcNow,
-                    InFlight = "0",
-                    Value = 10.ToString()
+                    InFlight = false,
+                    Value = Convert.ToDecimal(10)
 
                 });
             this.Work.Save();

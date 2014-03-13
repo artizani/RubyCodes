@@ -12,9 +12,9 @@ registrationModule.factory("storeRepository", function ($resource) {
     // post cart items
     var save = function(datas) {
         console.log(datas);
-        var person = $resource('/api/Registration', {}, { save: { method: 'POST', isArray: true } });
+        var person = $resource('/api/Purchase', {}, { save: { method: 'POST', isArray: true } });
         return person.save(datas, function (retVal) {
-            console.log(retVal);
+           // console.log(retVal);
         });
     };
 

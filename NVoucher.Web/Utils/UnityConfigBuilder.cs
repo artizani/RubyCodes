@@ -50,11 +50,11 @@ namespace NVoucher.Web.Utils
      public static void WithSqlServerStorage(IUnityContainer container)
      {
          //var id = HttpContext.Current.User.Identity.GetUserId();
-        
-        // var user = new User(id);
-         //container.RegisterInstance<IUser>(user);
-         container.RegisterInstance<IUnitOfWork>(new UnitOfWork());
-         //container.RegisterInstance<IFunder>(new FundService(id));
+         var work = new UnitOfWork();
+       
+         
+         container.RegisterInstance<IUnitOfWork>("basic",work);
+        //container.RegisterInstance<IFunder>(new FundService(id));
         // container.RegisterInstance<IProductRequest>(new ProductRequest(user));
      } 
     }
@@ -79,7 +79,9 @@ namespace NVoucher.Web.Utils
 
         public IDependencyScope BeginScope()
         {
-            return this;
+            var child = m_container.CreateChildContainer();
+            return new UnityDependencyResolver(child);
+           //return this;
         }
 
         public object GetService(Type serviceType)

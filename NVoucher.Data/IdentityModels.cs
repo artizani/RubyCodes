@@ -19,7 +19,7 @@ namespace NVoucher.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+           // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             // Change the name of the table to be Users instead of AspNetUsers
             modelBuilder.Entity<IdentityUser>().ToTable("Users");
             modelBuilder.Entity<ApplicationUser>().ToTable("Users");
@@ -36,13 +36,9 @@ namespace NVoucher.Data
             modelBuilder.Entity<UserPreference>().Property(o => o.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-        
+           // modelBuilder.Entity<ApplicationUser>()
+           //  .HasOptional(c => c.UserBalance);
 
-            modelBuilder.Entity<ApplicationUser>()
-                .HasOptional(c => c.UserBalance);
-               
-              
-                
             modelBuilder.Entity<Credit>()
              .HasRequired(c => c.ApplicationUser)
              .WithMany(c => c.Credits);

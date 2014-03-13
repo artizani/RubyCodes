@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using NVoucher.Data;
 using NVoucher.Model;
+
 
 namespace NVoucher.Service
 {
@@ -10,9 +12,11 @@ namespace NVoucher.Service
     {
         private decimal _balance;
         private string _userId;
-        IUnitOfWork Worker { get; set; }
-        public FundService(string userId)
+
+        private IUnitOfWork _worker;
+        public FundService(IUnitOfWork worker, string userId)
         {
+            _worker = worker;
             _userId = userId;
             this.Refresh();
         }
@@ -57,8 +61,8 @@ namespace NVoucher.Service
         private IUser _user;
         private void Refresh()
         {
-            var balance = Worker.BalanceRepository.GetByID(_userId);
-            _balance =  Convert.ToDecimal(balance.Value);
+            var balance = _worker.BalanceRepository.Get(bal => bal.ApplicationUserId == "22183559-283e-4d59-9413-08286baaed35");
+            _balance = Convert.ToDecimal(balance.FirstOrDefault().Value);
             // ToDo: db call using _user.UserName to get up to date Balance
            Console.WriteLine(" refreshing balance");
         }

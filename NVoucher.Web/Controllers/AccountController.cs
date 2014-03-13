@@ -329,25 +329,27 @@ namespace Demo.Controllers
 
             ApplicationUser user = new ApplicationUser
             {
-                
+             
                 UserName = model.UserName,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Numbers = model.Numbers,
                 Country = model.Country,
-                Term = model.Term
-                
+                Term = model.Term,    
             };
            
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-            
-            IHttpActionResult errorResult = GetErrorResult(result);
+            var userId = await UserManager.FindByNameAsync(user.UserName);
+            userId.UserBalance = new Balance { ApplicationUserId = userId.Id, DateTime = DateTime.UtcNow, InFlight = false,Value = new decimal(0)};
+            var identity = await UserManager.UpdateAsync(userId);
+            IHttpActionResult errorResult = GetErrorResult(identity);
 
             if (errorResult != null)
             {
                 return errorResult;
             }
-             var name =  UserManager.FindByNameAsync(user.UserName);
+            
+       
             // var name = Membership.GetUser(user.UserName);
             return Ok();
         }

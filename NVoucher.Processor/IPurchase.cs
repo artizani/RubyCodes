@@ -84,7 +84,7 @@ namespace NVoucher.Service
                     result =>
                         new EntityMap
                         {
-                            Table = string.Format("{0}_{1}", result.Value.Vendor, result.Value.Amount),
+                            Table = string.Format("{0}_{1}", result.Value.Vendor, result.Value.Price),
                             Count = result.Key,
                             product = result.Value
                         }).ToList();
@@ -94,7 +94,7 @@ namespace NVoucher.Service
            
             foreach (var source in order.Items)
             {
-                string table = string.Format("{0}_{1}", source.Value.Vendor, source.Value.Amount);
+                string table = string.Format("{0}_{1}", source.Value.Vendor, source.Value.Price);
 
                 foreach (EntityMap items in newVouchers.Where(v => (v.Table == table)))
                 {
@@ -105,7 +105,7 @@ namespace NVoucher.Service
                         responseList.Add(new Product
                         {
                             Name = source.Value.Name,
-                            Amount = source.Value.Amount,
+                            Price = source.Value.Price,
                             Date = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm",
                                 CultureInfo.InvariantCulture),
                             Secret = secret,

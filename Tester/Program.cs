@@ -70,8 +70,8 @@ namespace Tester
            return new Balance
             {
                 ApplicationUserId = "b62c1b75-1476-4ea5-aa57-523db32819f2",
-                 InFlight= "1",
-                Value ="4000",
+                 InFlight=false,
+                Value =Convert.ToDecimal("4000"),
                 DateTime = DateTime.UtcNow
              
 

@@ -24,25 +24,25 @@ namespace NVoucher.Test
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 100
+                    Price = 100
                 }),
                 new KeyValuePair<int, IProduct>(1, new Product
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 50
+                    Price = 50
                 }),
                 new KeyValuePair<int, IProduct>(2, new Product
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 1000
+                    Price = 1000
                 }),
                 new KeyValuePair<int, IProduct>(2, new Product
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 200
+                    Price = 200
                 })
             };
 
@@ -68,25 +68,25 @@ namespace NVoucher.Test
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 100
+                    Price = 100
                 }),
                 new KeyValuePair<int, IProduct>(1, new Product
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 50
+                    Price = 50
                 }),
                 new KeyValuePair<int, IProduct>(2, new Product
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 1000
+                    Price = 1000
                 }),
                 new KeyValuePair<int, IProduct>(2, new Product
                 {
                     Name = "MTN",
                     Vendor = Vendor.MTN,
-                    Amount = 200
+                    Price = 200
                 })
             };
 

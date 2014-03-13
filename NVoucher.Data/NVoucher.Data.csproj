@@ -65,6 +65,19 @@
     <Compile Include="IDataResultRepository.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="Migrations\201403062105054_nv.cs" />
+    <Compile Include="Migrations\201403062105054_nv.Designer.cs">
+      <DependentUpon>201403062105054_nv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403062147151_nv1.cs" />
+    <Compile Include="Migrations\201403062147151_nv1.Designer.cs">
+      <DependentUpon>201403062147151_nv1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403071543010_nv2.cs" />
+    <Compile Include="Migrations\201403071543010_nv2.Designer.cs">
+      <DependentUpon>201403071543010_nv2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -81,6 +94,17 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201403062105054_nv.resx">
+      <DependentUpon>201403062105054_nv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403062147151_nv1.resx">
+      <DependentUpon>201403062147151_nv1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403071543010_nv2.resx">
+      <DependentUpon>201403071543010_nv2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
