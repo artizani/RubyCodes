@@ -10,6 +10,8 @@ namespace NVoucher.Data
         IRepository<Debit> DebitRepository { get; }
         IRepository<Transaction> TransactionRepository { get; }
         IRepository<Profile> ProfileRepository { get; }
+
+        IRepository<ProductValue> ProductValueRepository { get; }
         void Save();
         void SaveAsync();
         void Dispose();
@@ -23,7 +25,7 @@ namespace NVoucher.Data
         private IRepository<Credit> _creditRepository;
         private IRepository<Debit> _debitRepository;
         private IRepository<Transaction> _transactionRepository;
-    
+        private IRepository<ProductValue> _productValueRepository;
 
         public IRepository<Balance> BalanceRepository
         {
@@ -33,6 +35,14 @@ namespace NVoucher.Data
             }
         }
 
+        public IRepository<ProductValue> ProductValueRepository
+        {
+            get
+            {
+                return this._productValueRepository ??
+                       (this._productValueRepository = new GenericRepository<ProductValue>(this.context));
+            }
+        }
         public IRepository<Credit> CreditRepository
         {
             get {

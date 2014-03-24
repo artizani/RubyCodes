@@ -6,6 +6,6 @@ namespace NVoucher.Service
     public interface IProductRequest
     {
         IUser User { get; }
-        Order Item { get;  }
+        IOrder Order { get;  }
     }
 }

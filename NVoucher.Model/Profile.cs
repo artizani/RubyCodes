@@ -27,6 +27,8 @@ namespace NVoucher.Model
         public virtual Debit Debit { get; set; }
     }
 
+
+
     public class Profile
     {
         public string FirstName { get; set; }
@@ -50,10 +52,10 @@ namespace NVoucher.Model
 
         public long DebitId { get; set; }
         public string ApplicationUserId { get; set; }
-        public string OldValue { get; set; }
-        public string Amount { get; set; }
-        public string NewValue { get; set; }
-        public string InFlight { get; set; }
+        public decimal OldValue { get; set; }
+        public decimal Amount { get; set; }
+        public decimal NewValue { get; set; }
+        public bool InFlight { get; set; }
         public System.DateTime DateTime { get; set; }
 
         public virtual ApplicationUser  ApplicationUser  { get; set; }
@@ -65,10 +67,10 @@ namespace NVoucher.Model
     {
         public long CreditId { get; set; }
         public string ApplicationUserId { get; set; }
-        public string OldValue { get; set; }
-        public string Amount { get; set; }
-        public string NewValue { get; set; }
-        public string InFlight { get; set; }
+        public decimal OldValue { get; set; }
+        public decimal Amount { get; set; }
+        public decimal NewValue { get; set; }
+        public bool InFlight { get; set; }
         public System.DateTime DateTime { get; set; }
 
         public virtual ApplicationUser  ApplicationUser  { get; set; }

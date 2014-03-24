@@ -29,12 +29,22 @@ namespace NVoucher.Data
             modelBuilder.Entity<Debit>().HasKey(t => t.DebitId);
             modelBuilder.Entity<UserPreference>().HasKey(t => t.Id);
             modelBuilder.Entity<Transaction>().HasKey(t => t.Id);
+            modelBuilder.Entity<ProductValue>().HasKey(t => t.ProductValueId);
 
             modelBuilder.Entity<Transaction>().Property(o => o.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             modelBuilder.Entity<UserPreference>().Property(o => o.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<Debit>().Property(o => o.DebitId)
+               .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<Credit>().Property(o => o.CreditId)
+               .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<ProductValue>().Property(o => o.ProductValueId)
+               .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
            // modelBuilder.Entity<ApplicationUser>()
            //  .HasOptional(c => c.UserBalance);

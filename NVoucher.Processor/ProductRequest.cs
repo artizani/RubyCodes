@@ -16,7 +16,7 @@ namespace NVoucher.Service
 
         // check cache to validate product prices
 
-        public Order Item { get; private set; }
+        public IOrder Order { get; set; }
 
         private OrderResponse Fulfill(Order order)
         {
@@ -67,9 +67,8 @@ namespace NVoucher.Service
                         {
                             Name = source.Value.Name,
                             Price = source.Value.Price,
-                            Date = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm",
-                                CultureInfo.InvariantCulture),
-                            Secret = secret,
+                            Date = DateTime.UtcNow,
+                           // Secret = secret,
                             Category = source.Value.Category,
                             Vendor = source.Value.Vendor
 

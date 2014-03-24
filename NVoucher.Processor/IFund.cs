@@ -6,10 +6,12 @@ namespace NVoucher.Service
    public interface IFunder
    {
        decimal Balance { get; }
-       bool Credit(decimal value);
+       CreditResponse Credit(decimal value);
 
-       int Debit(decimal value);
+       DebitResponse Debit(decimal value);
        bool IsAffordable(decimal value);
+
+       IEnumerable<IProduct> FulfillOrder(IOrder order);
        IEnumerable<TransactionDetail> Statment();
    }
 }

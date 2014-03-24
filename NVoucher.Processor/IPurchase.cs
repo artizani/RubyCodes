@@ -19,7 +19,8 @@ namespace NVoucher.Service
     {
         private readonly IFunder _funder;
         private readonly IProductRequest _request;
-        private int _debitId;
+        private DebitResponse debitResponse;
+       
         private decimal TotalValue { get; set; }
       
         //private decimal Cost()
@@ -29,10 +30,9 @@ namespace NVoucher.Service
             
             try
             {
-                 _funder =_request.User.Funds;
                 _request = request;
-                this._debitId = 0;
-                this.TotalValue = _request.Item.Totalvalue;
+                _funder =_request.User.Funds;
+                this.TotalValue = _request.Order.Totalvalue;
             }
             catch (Exception assignmentException)
             {
@@ -40,7 +40,7 @@ namespace NVoucher.Service
             }
         }
 
-        public bool Fundable()
+        private bool Fundable()
         {
             
             if (_funder.IsAffordable(this.TotalValue))
@@ -49,12 +49,14 @@ namespace NVoucher.Service
         }
         private bool Purchase()
         {
+            if(!this.Fundable())
+                return false;
             try
             {
-               _debitId= _funder.Debit(this.TotalValue);
+               debitResponse = _funder.Debit(this.TotalValue);
                 return true;
             }
-            catch (Exception purchaException)
+            catch (Exception purchaseException)
             {
                 //log ex
                 return false;
@@ -64,73 +66,22 @@ namespace NVoucher.Service
 
         public OrderResponse Deliver()
         {
-            if (!this.Purchase() || _debitId == 0)
-                return new OrderResponse {Message = "Yawa dey", Response = ResponseType.Error, Items = null};
-
-            UpdateTransaction(_debitId);
-            var order = new Order();
-            var result = PopulateResult(order);
-            return result;
-
-        }
-
-        private OrderResponse PopulateResult(Order order)
-        {
-            //ToDo: Retrieve relevant voucher codes in response
-             var response = new OrderResponse();
-            var responseList = new List<IProduct>();
-            List<EntityMap> products =
-                order.Items.Select(
-                    result =>
-                        new EntityMap
-                        {
-                            Table = string.Format("{0}_{1}", result.Value.Vendor, result.Value.Price),
-                            Count = result.Key,
-                            product = result.Value
-                        }).ToList();
-
-            var Repo = new DataResultRepository();
-            var newVouchers = Repo.GetNewVouchers(products) as List<EntityMap>;
-           
-            foreach (var source in order.Items)
-            {
-                string table = string.Format("{0}_{1}", source.Value.Vendor, source.Value.Price);
-
-                foreach (EntityMap items in newVouchers.Where(v => (v.Table == table)))
+            if (this.Purchase() && debitResponse != DebitResponse.OK)
+                return new OrderResponse
                 {
-                    for (int i = 0; i < source.Key; i++)
-                    {
-                        string secret = items.Result[i];
-
-                        responseList.Add(new Product
-                        {
-                            Name = source.Value.Name,
-                            Price = source.Value.Price,
-                            Date = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm",
-                                CultureInfo.InvariantCulture),
-                            Secret = secret,
-                            Category = source.Value.Category,
-                            Vendor = source.Value.Vendor
-
-                        });
+                    Message = "Houston we have a problem !!",
+                    Response = PurchaseResponse.Error,
+                    Items = null
+                };
 
 
-                    }
-                }
-            }
 
-            response.Items = responseList;
-            return response;
-            //tbc
+            var result = _funder.FulfillOrder(_request.Order);
+            return new OrderResponse {Message = "All Good", Response = PurchaseResponse.Success, Items = result};
+
         }
-            //return new OrderResponse();
-        
 
-        private void UpdateTransaction(int orderId)
-        {
-            _request.Item.Id = orderId;
-            //ToDo: use debit Id to write to transaction table
-        }
+
     }
 
     
